@@ -53,7 +53,7 @@ io.on('connection', async (socket) => {
     io.emit('chat message', msg, result.lastInsertRowid.toString(), username)
   })
 
-  if (!socket.recovered) { // <- recuperase los mensajes sin conexión
+  if (!socket.recovered) {
     try {
       const results = await db.execute({
         sql: 'SELECT id, content, user FROM messages WHERE id > ?',

@@ -35,7 +35,7 @@
     const messages = document.getElementById('messages')
 
     socket.on('chat message', (msg, serverOffset, username) => {
-      const item = `<li>
+      const item = `<li class="messages">
         <p>${msg}</p>
         <small>${username}</small>
       </li>`
@@ -78,7 +78,7 @@
 
     #messages {
       list-style-type: none;
-      margin: 0;
+      margin: 0 auto;
       padding: 0;
       overflow-y: scroll;
       height: 100%;
@@ -86,7 +86,11 @@
       padding-bottom: 48px;
     }
 
-    #messages>li {
+    .messages {
+      word-wrap: break-word;
+    }
+
+    #messages > li {
       padding: .5rem 1rem;
     }
 
@@ -108,34 +112,37 @@
       display: flex;
       height: 48px;
       left: 0;
-      padding: 4px;
       position: absolute;
       right: 0;
+      overflow-y: hidden;
     }
 
     #input {
-      border-radius: 9999px;
-      border: 1px solid #eee;
       flex: 1;
-      margin: 4px;
-      padding: 0 8px;
+      border: none;
+      outline: none;
+      padding: 10px;
+      font-size: 14px;
     }
 
     #input:focus {
       outline: 0;
     }
 
-    #form>button {
-      background: #09f;
+    #form > button {
+      border: none;
+      outline: none;
+      background-color: #333;
       color: #fff;
-      border: 0;
-      margin: 4px;
-      border-radius: 4px;
+      font-size: 14px;
+      padding: 5px 10px;
+      cursor: pointer;
     }
 
-    #form>button:hover {
-      background: #0cf;
-    }
+    #form > button:hover {
+      background-color: rgb(255, 255, 255);
+      color: rgb(0, 0, 0);
+      box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.25);    }
   </style>
 </head>
 
@@ -143,7 +150,7 @@
   <section id="chat">
     <ul id="messages"></ul>
     <form id="form">
-      <input type="text" name="message" id="input" placeholder="Type a message" autocomplete="off" />
+      <input type="text" name="message" id="input" placeholder="Type a message" autocomplete="off" maxlength="200"/>
       <button type="submit">Enviar</button>
     </form>
   </section>
